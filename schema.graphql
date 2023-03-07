@@ -1,0 +1,15 @@
+scalar JSON
+
+type Query{
+
+
+    getUserBYId(id : Int):JSON
+    getAllUser(page : Int):JSON
+
+}
+
+type Mutation{
+    createUser(name : String , email : String):JSON
+    updateUser(id : Int, name : String,email : String):JSON
+    deleteUser(id : Int):JSON
+}
