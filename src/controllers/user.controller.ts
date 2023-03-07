@@ -58,7 +58,7 @@ export class UserController{
     };
     async getAllUser(_:any , args : any){
         try{
-            let { page = 1, limit = 3 } = args
+            let { page = 1, limit = 3 ,search=null} = args
             page=parseInt(page)
             interface PageInfo {
                 next?: {
@@ -96,9 +96,26 @@ export class UserController{
                 };
               }
             const skip = (page - 1) * limit;
+
+            if (search !==null){
+                const getUser= await prisma.user.findMany({
+                    where:{
+                        name:search
+                    },
+                    skip: skip,
+                    take: limit,
+                    orderBy: {
+                        name: 'asc',
+                      }
+                  });
+                  return {pageInfo:pageInfo,users:getUser}
+            }
             const getUser= await prisma.user.findMany({
                 skip: skip,
                 take: limit,
+                orderBy: {
+                    name: 'asc',
+                  }
               });
             return {pageInfo:pageInfo,users:getUser}
         }catch(err:any){

@@ -4,7 +4,7 @@ type Query{
 
 
     getUserBYId(id : Int):JSON
-    getAllUser(page : Int):JSON
+    getAllUser(page : Int,limit:Int,search:String):JSON
 
 }
 

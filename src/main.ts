@@ -10,14 +10,13 @@ const startServer = async () => {
   const typeDefs = await (await readFile("/home/ajay/Documents/Oodles_projects/VN project/CRUD_1/schema.graphql")).toString("utf-8");
   const server = new ApolloServer({ typeDefs, resolvers });
   await server.start();
-  console.log("Server started and applied middleware");
+  console.log("Server started and appied Apollo");
   server.applyMiddleware({ app });
 };
 startServer();
-const misc_config = {
-  PORT :4000
-}
 
-app.listen(misc_config.PORT,()=>{
-  console.log(`Server listening at port : ${misc_config.PORT}`)
+let PORT =4000
+
+app.listen(PORT,()=>{
+  console.log(`Server listening at port : ${PORT}`)
 })
